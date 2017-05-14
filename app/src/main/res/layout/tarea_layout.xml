@@ -14,13 +14,15 @@
         android:textStyle="bold"
         android:layout_marginTop="10px"/>
 
-    <EditText android:text="Título"
+    <EditText
+        android:hint="Título"
         android:id="@+id/txtTitulo"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10px"/>
 
-    <EditText android:text="Descripción"
+    <EditText
+        android:hint="Descripción"
         android:id="@+id/txtDescripcion"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -30,6 +32,15 @@
         android:id="@+id/butRecordatorio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Añadir recordatorio" />
+        android:text="Añadir recordatorio"
+        android:layout_marginTop="10px"
+        android:onClick=""/>
+
+    <Button
+        android:id="@+id/butGuardar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        android:layout_marginTop="10px" />
 
 </LinearLayout>
