@@ -41,7 +41,7 @@ public class RecibeNotificacion extends BroadcastReceiver {
         min = calendario.get(Calendar.MINUTE);
         fecha_sistema=mes+"-"+dia+"-"+ano+" ";
         hora_sistema=hora+":"+min;
-        admin = new AdminSQLiteOpenHelper(context, vars.bd, null, vars.version);
+        admin = new AdminSQLiteOpenHelper(context, "Notificaciones", null, 7);
         bd = admin.getWritableDatabase();
 
         if(bd!=null) {

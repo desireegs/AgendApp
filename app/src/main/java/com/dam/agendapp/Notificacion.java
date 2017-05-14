@@ -49,7 +49,7 @@ public class Notificacion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notificacion_layout);
-        admin = new AdminSQLiteOpenHelper(this, vars.bd, null, vars.version);
+        admin = new AdminSQLiteOpenHelper(this, "Notificaciones", null, 7);
         bd = admin.getWritableDatabase();
         dia = calendario.get(Calendar.DAY_OF_MONTH);
         mes = calendario.get(Calendar.MONTH)+1;
@@ -79,7 +79,7 @@ public class Notificacion extends AppCompatActivity {
 
 
     public void llenar111(View view) {
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, vars.bd, null, vars.version);
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "Notificaciones", null, 7);
         SQLiteDatabase bd = admin.getReadableDatabase();
         bd = admin.getWritableDatabase();
         registro = new ContentValues();
@@ -93,7 +93,7 @@ public class Notificacion extends AppCompatActivity {
         t5.setText("");
         t6.setText("");
         t7.setText("");
-        Toast.makeText(this, "alarma registrada", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Alarma registrada", Toast.LENGTH_LONG).show();
     }
     public void setCurrentTimeOnView() {
 
