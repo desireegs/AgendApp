@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Trabajo</string>
+    <string name="title_activity_agenda">agenda</string>
+    <string name="pick_tipo">Tipo de evento</string>
+    <string-array name="tipos">
+        <item>Tarea</item>
+        <item>Contactar</item>
+        <item>Cita</item>
+    </string-array>
+</resources>
