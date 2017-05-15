@@ -20,8 +20,6 @@ public class Evento extends AppCompatActivity {
             tipoContactar();
         else if (tipo == 2)
             tipoCita();
-        
-
     }
 
     private void tipoTarea(){
@@ -32,5 +30,10 @@ public class Evento extends AppCompatActivity {
     }
     private void tipoCita(){
         setContentView(R.layout.cita_layout);
+    }
+
+    public void programar_evento() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

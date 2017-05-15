@@ -15,9 +15,4 @@ public class Cita extends Tarea{
 
     }
 
-    /*public void programar_evento() {
-        Intent intent = new Intent(this, Notificacion.class);
-        startActivity(intent);
-    }*/
-
 }

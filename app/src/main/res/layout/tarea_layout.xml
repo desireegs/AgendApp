@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:text="Añadir recordatorio"
         android:layout_marginTop="10px"
-        android:onClick=""/>
+        android:onClick="programar_evento"/>
 
     <Button
         android:id="@+id/butGuardar"
