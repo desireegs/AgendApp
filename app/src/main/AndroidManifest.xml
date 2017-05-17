@@ -20,14 +20,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".Agenda" />
-        <activity android:name=".Evento"></activity>
-        <activity android:name=".Notificacion"></activity>
+        <activity android:name=".Evento" />
+        <activity android:name=".Notificacion" />
+
         <receiver
             android:name=".RecibeNotificacion"
             android:process=":remote" />
+
         <service
             android:name=".MyTestService"
             android:exported="false" />
+
     </application>
 
 </manifest>

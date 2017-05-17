@@ -94,6 +94,7 @@ public class Notificacion extends AppCompatActivity {
         t6.setText("");
         t7.setText("");
         Toast.makeText(this, "Alarma registrada", Toast.LENGTH_LONG).show();
+        finish();
     }
     public void setCurrentTimeOnView() {
 
