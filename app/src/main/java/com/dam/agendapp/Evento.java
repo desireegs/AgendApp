@@ -95,8 +95,6 @@ public class Evento extends AppCompatActivity {
                     null, null, direccion.getText().toString(),
                     horaCita.getText().toString());
         }
-
-
         finish();
 
     }
