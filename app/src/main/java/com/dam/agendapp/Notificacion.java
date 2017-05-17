@@ -23,7 +23,7 @@ import java.util.Calendar;
 
 public class Notificacion extends AppCompatActivity {
     private EditText t4, t3,t5,t6,t7;
-    private AdminSQLiteOpenHelper admin;
+    private BaseDeDatos admin;
     private SQLiteDatabase bd;
     private ContentValues registro;
     private EditText tvDisplayDate;
@@ -49,7 +49,7 @@ public class Notificacion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notificacion_layout);
-        admin = new AdminSQLiteOpenHelper(this, "Notificaciones", null, 7);
+        admin = new BaseDeDatos(this);
         bd = admin.getWritableDatabase();
         dia = calendario.get(Calendar.DAY_OF_MONTH);
         mes = calendario.get(Calendar.MONTH)+1;
@@ -79,7 +79,7 @@ public class Notificacion extends AppCompatActivity {
 
 
     public void llenar111(View view) {
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "Notificaciones", null, 7);
+        BaseDeDatos admin = new BaseDeDatos(this);
         SQLiteDatabase bd = admin.getReadableDatabase();
         bd = admin.getWritableDatabase();
         registro = new ContentValues();

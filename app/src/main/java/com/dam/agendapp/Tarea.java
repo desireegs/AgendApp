@@ -3,7 +3,7 @@ package com.dam.agendapp;
 import java.util.Calendar;
 
 public class Tarea {
-    private int id;
+
     private int tipo;
     private String titulo;
     private String descripcion;
@@ -16,14 +16,6 @@ public class Tarea {
         setTitulo(titulo);
         setDescripcion(descripcion);
         setRecordatorio(recordatorio);
-    }
-
-    public int getId(){
-        return id;
-    }
-
-    public void setId(int id){
-        this.id = id;
     }
 
     public int getTipo(){

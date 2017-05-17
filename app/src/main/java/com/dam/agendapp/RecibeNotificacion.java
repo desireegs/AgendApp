@@ -20,7 +20,7 @@ public class RecibeNotificacion extends BroadcastReceiver {
     public static final int REQUEST_CODE = 12345;
     private NotificationManager notificationManager;
     private final int NOTIFICATION_ID = 1010;
-    private AdminSQLiteOpenHelper admin;
+    private BaseDeDatos admin;
     private Cursor fila;
     private SQLiteDatabase bd;
     private String alarma,descripcion,titulo;
@@ -41,7 +41,7 @@ public class RecibeNotificacion extends BroadcastReceiver {
         min = calendario.get(Calendar.MINUTE);
         fecha_sistema=mes+"-"+dia+"-"+ano+" ";
         hora_sistema=hora+":"+min;
-        admin = new AdminSQLiteOpenHelper(context, "Notificaciones", null, 7);
+        admin = new BaseDeDatos(context);
         bd = admin.getWritableDatabase();
 
         if(bd!=null) {
