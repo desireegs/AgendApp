@@ -7,9 +7,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
@@ -25,7 +28,10 @@ public class Agenda extends AppCompatActivity {
     TextView mes;
     TextView semana;
     TextView dia;
-    //ScrollView scroll;
+    private ListView lista;
+
+    private BaseDeDatos bd;
+
 
 
     @Override
@@ -37,20 +43,9 @@ public class Agenda extends AppCompatActivity {
         mes = (TextView)findViewById(R.id.mes);
         semana = (TextView)findViewById(R.id.semana);
         dia = (TextView)findViewById(R.id.dia);
-        //scroll = (ScrollView) findViewById(R.id.scroll) ;
 
-        mes.setText(getMes(fecha));
-        semana.setText(getDiaSemana(fecha));
-        dia.setText(getDia(fecha));
-
-        /*scroll.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Log.d("TAG","Click largo");
-                onCreateDialog(savedInstanceState);
-                return true;
-            }
-        });*/
+        bd = new BaseDeDatos(getApplicationContext());
+        refrescar();
 
 
 
@@ -80,9 +75,51 @@ public class Agenda extends AppCompatActivity {
     }
 
     private void refrescar(){
+        //Refrescamos el dia
         mes.setText(getMes(fecha));
         semana.setText(getDiaSemana(fecha));
         dia.setText(getDia(fecha));
+
+        Log.d("TAG", "Hemos refrescado el dia");
+        //Refrescamos la lista de tareas
+        ArrayList<Tarea> datos = bd.recuperaLista(fecha);
+        Log.d("TAG", "Hemos obtenido los datos de la base de datos");
+        //if(datos.size() > 0) {
+            lista = (ListView) findViewById(R.id.lista);
+            lista.setAdapter(new Lista_adaptador(this, R.layout.agenda_layout, datos) {
+                @Override
+                public void onEntrada(Object entrada, View view) {
+                    if (entrada != null) {
+                        TextView texto_titulo = (TextView) view.findViewById(R.id.textView_titulo);
+                        if (texto_titulo != null)
+                            texto_titulo.setText(((Tarea) entrada).getTitulo());
+
+                        TextView texto_des = (TextView) view.findViewById(R.id.textView_descripcion);
+                        if (texto_des != null)
+                            texto_des.setText(((Tarea) entrada).getDescripcion());
+
+                        TextView texto_ID = (TextView) view.findViewById(R.id.textView_ID);
+                        if (texto_ID != null)
+                            texto_ID.setText(Integer.toString(((Tarea) entrada).getId()));
+
+                    /*if(((Tarea) entrada).getTipo() == 1) {
+
+                        TextView texto_email = (TextView) view.findViewById(R.id.textView_email);
+                        if (texto_email != null)
+                            texto_email.setText(((Tarea) entrada).());
+
+
+
+                    }*/
+
+                    }
+                }
+            });
+        //}
+
+
+
+
     }
 
     public void irSiguiente(View view){
@@ -134,6 +171,7 @@ public class Agenda extends AppCompatActivity {
     public void irEvento(int tipo){
         Intent intent = new Intent(this,Evento.class);
         intent.putExtra(EXTRA_MESSAGE,tipo);
+        intent.putExtra("fecha",fecha);
         startActivity(intent);
     }
 

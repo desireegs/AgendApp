@@ -3,12 +3,15 @@ package com.dam.agendapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.CalendarContract;
+import android.util.Log;
 import android.widget.Button;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class BaseDeDatos extends SQLiteOpenHelper {
@@ -22,8 +25,8 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         db.execSQL(" create table alarma( idal integer primary key autoincrement,encabezado text, " +
                 "mensaje text,fecha date, hora time)");
         db.execSQL(" create table lista( idlis integer primary key autoincrement,tipo integer, " +
-                "fecha date,titulo text, descripcion text" + "telefono text, email text, " +
-                "direccion text, horaCita text");
+                "fecha date,recordatorio integer,titulo text, descripcion text, telefono text, " +
+                "email text, direccion text, horaCita text)");
 
 
 
@@ -36,8 +39,8 @@ public class BaseDeDatos extends SQLiteOpenHelper {
 
         db.execSQL("drop table if exists lista" );
         db.execSQL(" create table lista( idlis integer primary key autoincrement,tipo integer, " +
-                "fecha date,titulo text, descripcion text" + "telefono text, email text, " +
-                "direccion text, horaCita text");
+                "fecha date,recordatorio integer,titulo text, descripcion text, telefono text, " +
+                "email text, direccion text, horaCita text)");
 
     }
 
@@ -47,27 +50,7 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         ContentValues valores = new ContentValues();
         valores.put("titulo", titulo);
         valores.put("descripcion", descripcion);
-
-        String mes;
-        String dia;
-
-        int a = fecha.get(Calendar.YEAR);
-        int m = fecha.get(Calendar.MONTH)+1;
-        int d = fecha.get(Calendar.DAY_OF_MONTH);
-
-        if(m < 10){
-            mes = "0" + m;
-        }else{
-            mes = Integer.toString(m);
-        }
-
-        if(d < 10){
-            dia = "0" + d;
-        }else{
-            dia = Integer.toString(d);
-        }
-
-        valores.put("fecha", a+"-"+ mes+"-"+ dia);
+        valores.put("fecha", fechaToString(fecha));
 
         if(tipo == 1){
             valores.put("telefono", telefono);
@@ -86,5 +69,73 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         return(salida>0);
 
 
+    }
+
+    //Devuelve una lista con las tareas que corresponden a la fecha dada en el Calendar
+    public ArrayList<Tarea> recuperaLista(Calendar f) {
+        Log.d("TAG", "Hemos entrado en recuperaLista");
+        SQLiteDatabase db = getReadableDatabase();
+        ArrayList<Tarea> lista = new ArrayList<Tarea>();
+        String[] valores_recuperar = {"idlis", "tipo", "fecha","recordatorio", "titulo","descripcion", "telefono",
+                                        "email", "direccion", "horaCita" };
+        String fecha = fechaToString(f);
+        Log.d("TAG", "Vamos a obtener el cursor");
+        Cursor c = db.query("lista", valores_recuperar, "fecha="+fecha, null, null, null, null );
+        Log.d("TAG", "Cursor obtenido");
+        c.moveToFirst();
+        Log.d("TAG", "Nos hemos movido al primer elemento");
+        if(c.moveToFirst()) {
+            do {
+                Log.d("TAG", "Entramos en el do");
+                Tarea t = new Tarea(c.getInt(0), c.getInt(1), c.getInt(3), c.getString(4), c.getString(5),
+                        c.getString(6), c.getString(7), c.getString(8), c.getString(9), fechaToCalendar(c.getString(2)));
+                Log.d("TAG", "Tarea creada");
+                lista.add(t);
+                Log.d("TAG", "Tarea añadida a la lista");
+
+            } while (c.moveToNext());
+        }
+        Log.d("TAG", "Todo añadido");
+        db.close();
+        c.close();
+        Log.d("TAG", "Todo cerrado");
+        return lista;
+    }
+
+
+
+    //Convierte la fecha de un tipo calendar al formato YYYY-MM-DD
+    private String fechaToString(Calendar f){
+        String mes;
+        String dia;
+
+        int a = f.get(Calendar.YEAR);
+        int m = f.get(Calendar.MONTH)+1;
+        int d = f.get(Calendar.DAY_OF_MONTH);
+
+        if(m < 10){
+            mes = "0" + m;
+        }else{
+            mes = Integer.toString(m);
+        }
+
+        if(d < 10){
+            dia = "0" + d;
+        }else{
+            dia = Integer.toString(d);
+        }
+
+        return a+"-"+ mes+"-"+ dia;
+    }
+
+    //Convierte el formato YYYY-MM-DD a Calendar
+    private Calendar fechaToCalendar(String f){
+        Calendar fecha = Calendar.getInstance();
+
+        fecha.set(Calendar.YEAR,Integer.parseInt(f.substring(0,4)));
+        fecha.set(Calendar.MONTH,Integer.parseInt(f.substring(5,7)+1));
+        fecha.set(Calendar.DAY_OF_MONTH,Integer.parseInt(f.substring(8)));
+
+        return  fecha;
     }
 }

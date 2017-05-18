@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -18,7 +19,7 @@ public class Evento extends AppCompatActivity {
     private Button recordatorio;
     private Button bguardar;
 
-    private BaseDeDatos db;
+    private BaseDeDatos bd;
     private int tipo;
     private Calendar fecha;
 
@@ -28,6 +29,7 @@ public class Evento extends AppCompatActivity {
 
         Intent intent = getIntent();
         tipo = intent.getIntExtra(EXTRA_MESSAGE, 0);
+        fecha = (Calendar) intent.getSerializableExtra("fecha");
 
         if(tipo == 0)
             tipoTarea();
@@ -71,19 +73,20 @@ public class Evento extends AppCompatActivity {
     }
 
     public void guardar(){
-        db = new BaseDeDatos(getApplicationContext());
+        bd = new BaseDeDatos(getApplicationContext());
 
         EditText titulo = (EditText) findViewById(R.id.txtTitulo);
         EditText descripcion = (EditText) findViewById(R.id.txtDescripcion);
+        Boolean res = false;
 
         if(tipo == 0){
-            db.insertarLista(tipo, fecha, titulo.getText().toString(), descripcion.getText().toString(),
+            res=bd.insertarLista(tipo, fecha, titulo.getText().toString(), descripcion.getText().toString(),
                     null, null, null, null);
         }else if(tipo == 1) {
             EditText telefono = (EditText) findViewById(R.id.txtTelefono);
             EditText email = (EditText) findViewById(R.id.txtEmail);
 
-            db.insertarLista(tipo, fecha, titulo.getText().toString(), descripcion.getText().toString(),
+            res = bd.insertarLista(tipo, fecha, titulo.getText().toString(), descripcion.getText().toString(),
                     telefono.getText().toString(), email.getText().toString(), null, null);
         }
         else if(tipo == 2){
@@ -91,12 +94,19 @@ public class Evento extends AppCompatActivity {
             EditText horaCita = (EditText) findViewById(R.id.txtHora);
 
 
-            db.insertarLista(tipo, fecha, titulo.getText().toString(), descripcion.getText().toString(),
+            res =bd.insertarLista(tipo, fecha, titulo.getText().toString(), descripcion.getText().toString(),
                     null, null, direccion.getText().toString(),
                     horaCita.getText().toString());
+
+
         }
 
-
+        if(res)
+            Toast.makeText(getApplicationContext(),
+                    "Evento añadido correctamente", Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(getApplicationContext(),
+                    "No se ha podido guardar el evento" ,   Toast.LENGTH_LONG).show();
         finish();
 
     }
