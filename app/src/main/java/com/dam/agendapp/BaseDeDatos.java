@@ -73,32 +73,32 @@ public class BaseDeDatos extends SQLiteOpenHelper {
 
     //Devuelve una lista con las tareas que corresponden a la fecha dada en el Calendar
     public ArrayList<Tarea> recuperaLista(Calendar f) {
-        Log.d("TAG", "Hemos entrado en recuperaLista");
         SQLiteDatabase db = getReadableDatabase();
         ArrayList<Tarea> lista = new ArrayList<Tarea>();
         String[] valores_recuperar = {"idlis", "tipo", "fecha","recordatorio", "titulo","descripcion", "telefono",
                                         "email", "direccion", "horaCita" };
         String fecha = fechaToString(f);
-        Log.d("TAG", "Vamos a obtener el cursor");
-        Cursor c = db.query("lista", valores_recuperar, "fecha="+fecha, null, null, null, null );
-        Log.d("TAG", "Cursor obtenido");
+        String consulta = "select * from lista where fecha=?";
+
+        //Cursor c = db.query("lista", valores_recuperar, null, null, null, null, null );
+        Cursor c = db.rawQuery(consulta,new String[] {fecha});
         c.moveToFirst();
-        Log.d("TAG", "Nos hemos movido al primer elemento");
+
         if(c.moveToFirst()) {
             do {
-                Log.d("TAG", "Entramos en el do");
+
                 Tarea t = new Tarea(c.getInt(0), c.getInt(1), c.getInt(3), c.getString(4), c.getString(5),
                         c.getString(6), c.getString(7), c.getString(8), c.getString(9), fechaToCalendar(c.getString(2)));
-                Log.d("TAG", "Tarea creada");
+
                 lista.add(t);
-                Log.d("TAG", "Tarea añadida a la lista");
+
 
             } while (c.moveToNext());
         }
-        Log.d("TAG", "Todo añadido");
+
         db.close();
         c.close();
-        Log.d("TAG", "Todo cerrado");
+
         return lista;
     }
 

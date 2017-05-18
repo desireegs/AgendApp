@@ -80,13 +80,13 @@ public class Agenda extends AppCompatActivity {
         semana.setText(getDiaSemana(fecha));
         dia.setText(getDia(fecha));
 
-        Log.d("TAG", "Hemos refrescado el dia");
+
         //Refrescamos la lista de tareas
         ArrayList<Tarea> datos = bd.recuperaLista(fecha);
-        Log.d("TAG", "Hemos obtenido los datos de la base de datos");
-        //if(datos.size() > 0) {
+        Log.d("TAG", datos.size() + " elementos recuperados de BD");
+
             lista = (ListView) findViewById(R.id.lista);
-            lista.setAdapter(new Lista_adaptador(this, R.layout.agenda_layout, datos) {
+            lista.setAdapter(new Lista_adaptador(this, R.layout.lista_layout, datos) {
                 @Override
                 public void onEntrada(Object entrada, View view) {
                     if (entrada != null) {
@@ -115,7 +115,7 @@ public class Agenda extends AppCompatActivity {
                     }
                 }
             });
-        //}
+
 
 
 
