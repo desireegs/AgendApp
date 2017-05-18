@@ -76,12 +76,9 @@ public class BaseDeDatos extends SQLiteOpenHelper {
     public ArrayList<Tarea> recuperaLista(Calendar f) {
         SQLiteDatabase db = getReadableDatabase();
         ArrayList<Tarea> lista = new ArrayList<Tarea>();
-        String[] valores_recuperar = {"idlis", "tipo", "fecha","recordatorio", "titulo","descripcion", "telefono",
-                                        "email", "direccion", "horaCita" };
         String fecha = fechaToString(f);
         String consulta = "select * from lista where fecha=?";
 
-        //Cursor c = db.query("lista", valores_recuperar, null, null, null, null, null );
         Cursor c = db.rawQuery(consulta,new String[] {fecha});
         c.moveToFirst();
 
@@ -101,6 +98,29 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         c.close();
 
         return lista;
+    }
+
+    public boolean  borrarTarea(int id) {
+        SQLiteDatabase db = getWritableDatabase();
+        long salida=0;
+        if (db != null) {
+            salida=db.delete("lista", "_id=" + id, null);
+        }
+        db.close();
+        return(salida>0);
+    }
+
+    public boolean  borrarLista(Calendar f) {
+        SQLiteDatabase db = getWritableDatabase();
+        long salida=0;
+        if (db != null) {
+            String fecha = fechaToString(f);
+            String consulta = "delete * from lista where fecha=?";
+
+            db.execSQL(consulta,new String[] {fecha});
+        }
+        db.close();
+        return(salida>0);
     }
 
 
