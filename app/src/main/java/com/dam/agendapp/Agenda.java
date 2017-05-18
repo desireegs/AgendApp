@@ -18,6 +18,7 @@ import java.util.Calendar;
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class Agenda extends AppCompatActivity {
+    private final static int LISTA = 0;
 
     String meses[] = {"ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE",
             "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"};
@@ -172,7 +173,20 @@ public class Agenda extends AppCompatActivity {
         Intent intent = new Intent(this,Evento.class);
         intent.putExtra(EXTRA_MESSAGE,tipo);
         intent.putExtra("fecha",fecha);
-        startActivity(intent);
+        startActivityForResult(intent, LISTA);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == LISTA) {
+
+            if(resultCode == RESULT_OK){
+               refrescar();
+            }
+            if (resultCode == RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
     }
 
 

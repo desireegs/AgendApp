@@ -107,6 +107,9 @@ public class Evento extends AppCompatActivity {
         else
             Toast.makeText(getApplicationContext(),
                     "No se ha podido guardar el evento" ,   Toast.LENGTH_LONG).show();
+
+        Intent returnintent = new Intent();
+        setResult(RESULT_OK, returnintent);
         finish();
 
     }
