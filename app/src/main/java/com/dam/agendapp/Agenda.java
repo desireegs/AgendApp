@@ -84,34 +84,58 @@ public class Agenda extends AppCompatActivity {
 
         //Refrescamos la lista de tareas
         ArrayList<Tarea> datos = bd.recuperaLista(fecha);
-        Log.d("TAG", datos.size() + " elementos recuperados de BD");
+
+        Log.d("TAG", "Numero de tareas: "+ datos.size());
 
             lista = (ListView) findViewById(R.id.lista);
             lista.setAdapter(new Lista_adaptador(this, R.layout.lista_layout, datos) {
                 @Override
                 public void onEntrada(Object entrada, View view) {
                     if (entrada != null) {
-                        TextView texto_titulo = (TextView) view.findViewById(R.id.textView_titulo);
-                        if (texto_titulo != null)
-                            texto_titulo.setText(((Tarea) entrada).getTitulo());
 
-                        TextView texto_des = (TextView) view.findViewById(R.id.textView_descripcion);
-                        if (texto_des != null)
-                            texto_des.setText(((Tarea) entrada).getDescripcion());
+
+                        if(((Tarea) entrada).getTipo() == 0){
+                            Log.d("TAG", "He entrado en tipo 0");
+
+                            TextView texto_titulo = (TextView) view.findViewById(R.id.textView_titulo);
+                            if (texto_titulo != null)
+                                texto_titulo.setText(((Tarea) entrada).getTitulo());
+                        }
+
+                        else if(((Tarea) entrada).getTipo() == 1) {
+                            Log.d("TAG", "He entrado en tipo 1");
+                            TextView texto_titulo = (TextView) view.findViewById(R.id.textView_titulo);
+                            if (texto_titulo != null)
+                                texto_titulo.setText(((Tarea) entrada).getTitulo());
+
+                            TextView texto_tel = (TextView) view.findViewById(R.id.textView_telefono);
+                            texto_tel.setVisibility(View.VISIBLE);
+                            if (texto_tel != null)
+                                texto_tel.setText(((Tarea) entrada).getTelefono());
+
+                            TextView texto_email = (TextView) view.findViewById(R.id.textView_email);
+                            texto_email.setVisibility(View.VISIBLE);
+
+                            if (texto_email != null)
+                                texto_email.setText(((Tarea) entrada).getEmail());
+
+                        }else if(((Tarea) entrada).getTipo() == 2){
+                            Log.d("TAG", "He entrado en tipo 2");
+                            TextView texto_titulo = (TextView) view.findViewById(R.id.textView_titulo);
+                            if (texto_titulo != null)
+                                texto_titulo.setText(((Tarea) entrada).getTitulo());
+
+                            TextView texto_hora = (TextView) view.findViewById(R.id.textView_horaCita);
+                            texto_hora.setVisibility(View.VISIBLE);
+
+                            if (texto_hora != null)
+                                texto_hora.setText(((Tarea) entrada).getHoraCita());
+
+                        }
 
                         TextView texto_ID = (TextView) view.findViewById(R.id.textView_ID);
                         if (texto_ID != null)
                             texto_ID.setText(Integer.toString(((Tarea) entrada).getId()));
-
-                    /*if(((Tarea) entrada).getTipo() == 1) {
-
-                        TextView texto_email = (TextView) view.findViewById(R.id.textView_email);
-                        if (texto_email != null)
-                            texto_email.setText(((Tarea) entrada).());
-
-
-
-                    }*/
 
                     }
                 }

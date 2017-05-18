@@ -37,24 +37,25 @@ public class Tarea {
         return tipo;
     }
 
-    public void setTipo(int tipo){
-        this.tipo = tipo;
-    }
 
     public String getTitulo(){
         return titulo;
     }
 
-    public void setTitulo(String titulo){
-        this.titulo = titulo;
+    public String getEmail(){
+        return email;
+    }
+
+    public String getTelefono(){
+        return telefono;
+    }
+
+    public String getHoraCita(){
+        return hora;
     }
 
     public String getDescripcion(){
         return descripcion;
-    }
-
-    public void setDescripcion(String descripcion){
-        this.descripcion = descripcion;
     }
 
     public int getRecordatorio(){

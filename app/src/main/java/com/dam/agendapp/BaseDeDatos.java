@@ -48,6 +48,7 @@ public class BaseDeDatos extends SQLiteOpenHelper {
                                 String telefono, String email, String direccion, String horaCita){
 
         ContentValues valores = new ContentValues();
+        valores.put("tipo", tipo);
         valores.put("titulo", titulo);
         valores.put("descripcion", descripcion);
         valores.put("fecha", fechaToString(fecha));
