@@ -85,14 +85,17 @@ public class Agenda extends AppCompatActivity {
         dia.setText(getDia(fecha));
 
 
+
         //Refrescamos la lista de tareas
         ArrayList<Tarea> datos = bd.recuperaLista(fecha);
+
 
             lista = (ListView) findViewById(R.id.lista);
             lista.setAdapter(new Lista_adaptador(this, R.layout.lista_layout, datos) {
                 @Override
                 public void onEntrada(Object entrada, View view) {
                     if (entrada != null) {
+
 
 
                         if(((Tarea) entrada).getTipo() == 0){
@@ -134,7 +137,9 @@ public class Agenda extends AppCompatActivity {
                         TextView texto_ID = (TextView) view.findViewById(R.id.textView_ID);
                         if (texto_ID != null)
                             texto_ID.setText(Integer.toString(((Tarea) entrada).getId()));
-
+                        CheckBox c = (CheckBox) view.findViewById(R.id.check_completada);
+                        c.setTag(((Tarea) entrada).getId());
+                        c.setChecked(((Tarea) entrada).getCompletada());
                     }
                 }
             });
@@ -214,7 +219,7 @@ public class Agenda extends AppCompatActivity {
     }
 
     public void limpiar(View view){
-        Boolean res= bd.borrarLista(fecha);
+        Boolean res= bd.borrarLista();
         if(res)
             Toast.makeText(getApplicationContext(),
                     "Tareas borradas", Toast.LENGTH_LONG).show();
@@ -225,14 +230,11 @@ public class Agenda extends AppCompatActivity {
     }
 
     public void tareaCompletada(View view){
-        Log.d("TAG","Hemos pulsado el checkbox");
-            /*Boolean completada = ((CheckBox) view).isChecked();
-            Log.d("TAG","¿Tarea completada? "+ completada);
-            TextView id = (TextView) findViewById(R.id.textView_ID);
-            Log.d("TAG","Obtenido TextVIew de id: " + id);
-            String i = id.getText().toString();
-            Log.d("TAG","Pasado a cadena" + i);
-            bd.updateCompletado(completada, Integer.parseInt(id.getText().toString()));*/
+
+        CheckBox c = (CheckBox) view;
+        Boolean completada = c.isChecked();
+        int id = (Integer) c.getTag();
+        bd.updateCompletado(completada, id);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 
 public abstract class Lista_adaptador extends BaseAdapter {
 
@@ -18,6 +19,8 @@ public abstract class Lista_adaptador extends BaseAdapter {
         this.contexto = contexto;
         this.entradas = entradas;
         this.R_layout_IdView = R_layout_IdView;
+
+
     }
 
     @Override

@@ -14,10 +14,11 @@ public class Tarea implements Serializable {
     private String direccion;
     private String hora;
     private int recordatorio;
+    private int completada;
     Calendar fecha;
 
     public Tarea(int id, int tipo, int recordatorio, String titulo,String descripcion,
-                 String telefono, String email ,String direccion, String hora, Calendar fecha){
+                 String telefono, String email ,String direccion, String hora, Calendar fecha, int completada){
         this.id = id;
         this.tipo = tipo;
         this.fecha = fecha;
@@ -28,6 +29,7 @@ public class Tarea implements Serializable {
         this.hora = hora;
         this.telefono = telefono;
         this.email = email;
+        this.completada = completada;
     }
 
     public int getId(){
@@ -69,6 +71,15 @@ public class Tarea implements Serializable {
 
     public void setRecordatorio(int recordatorio){
         this.recordatorio = recordatorio;
+    }
+
+    public boolean getCompletada(){
+        boolean c = false;
+        if(completada == 1){
+            c = true;
+        }
+
+        return c;
     }
 
 

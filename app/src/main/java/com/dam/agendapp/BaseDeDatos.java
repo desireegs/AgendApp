@@ -40,7 +40,7 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         db.execSQL("drop table if exists lista" );
         db.execSQL(" create table lista( idlis integer primary key autoincrement,tipo integer, " +
                 "fecha date,recordatorio integer,titulo text, descripcion text, telefono text, " +
-                "email text, direccion text, horaCita text, , completada integer)");
+                "email text, direccion text, horaCita text, completada integer)");
 
     }
 
@@ -80,13 +80,14 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         String consulta = "select * from lista where fecha=?";
 
         Cursor c = db.rawQuery(consulta,new String[] {fecha});
+
         c.moveToFirst();
 
         if(c.moveToFirst()) {
             do {
 
                 Tarea t = new Tarea(c.getInt(0), c.getInt(1), c.getInt(3), c.getString(4), c.getString(5),
-                        c.getString(6), c.getString(7), c.getString(8), c.getString(9), fechaToCalendar(c.getString(2)));
+                        c.getString(6), c.getString(7), c.getString(8), c.getString(9), fechaToCalendar(c.getString(2)),c.getInt(10));
 
                 lista.add(t);
 
@@ -101,11 +102,14 @@ public class BaseDeDatos extends SQLiteOpenHelper {
     }
 
     public Tarea recuperaTarea(String id) {
+
         SQLiteDatabase db = getReadableDatabase();
         String consulta = "select * from lista where idlis=?";
         Cursor c = db.rawQuery(consulta, new String[] {id});
+
         Tarea t = new Tarea(c.getInt(0), c.getInt(1), c.getInt(3), c.getString(4), c.getString(5),
-                c.getString(6), c.getString(7), c.getString(8), c.getString(9), fechaToCalendar(c.getString(2)));
+                c.getString(6), c.getString(7), c.getString(8), c.getString(9), fechaToCalendar(c.getString(2)),c.getInt(10));
+
         db.close();
         c.close();
 
@@ -113,7 +117,19 @@ public class BaseDeDatos extends SQLiteOpenHelper {
     }
 
     public void updateCompletado(Boolean c, int id){
-
+        SQLiteDatabase db = getWritableDatabase();
+        if (db != null) {
+            ContentValues valores = new ContentValues();
+            int com;
+            if (c) {
+                com = 1;
+            }else{
+                com = 0;
+            }
+            valores.put("completada", com);
+            db.update("lista", valores, "idlis=" + id, null);
+        }
+        db.close();
     }
 
     public boolean  borrarTarea(int id) {
@@ -126,15 +142,13 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         return(salida>0);
     }
 
-    public Boolean  borrarLista(Calendar f) {
+    public Boolean  borrarLista() {
 
         SQLiteDatabase db = getWritableDatabase();
 
         int salida=0;
         if (db != null) {
-            String fecha = fechaToString(f);
-            Log.d("TAG", fecha);
-            salida = db.delete("lista", "titulo=", null);
+            salida = db.delete("lista", "completada=1", null);
         }
         db.close();
         return (salida > 0);
