@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:descendantFocusability="blocksDescendants">
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:rowCount="1">
 
 
 
@@ -27,42 +22,54 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:text="TITULO"
-            android:layout_column="1"
-            android:layout_row="0"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/check_completada"
+            android:layout_toEndOf="@+id/check_completada"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
-    </GridLayout>
+
+        <TextView
+            android:id="@+id/textView_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EMAIL"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_gravity="left"
+            android:layout_below="@+id/textView_telefono"
+            android:layout_toRightOf="@+id/check_completada"
+            android:layout_toEndOf="@+id/check_completada"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/textView_telefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TELEFONO"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_gravity="left"
+            android:layout_below="@+id/textView_titulo"
+            android:layout_toRightOf="@+id/check_completada"
+            android:layout_toEndOf="@+id/check_completada"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/textView_horaCita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HORA"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_gravity="left"
+            android:layout_toRightOf="@+id/check_completada"
+            android:layout_toEndOf="@+id/check_completada"
+            android:layout_below="@+id/textView_titulo"
+            android:visibility="gone"/>
 
 
 
 
 
-    <TextView
-        android:id="@+id/textView_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="EMAIL"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_gravity="left"
-        android:visibility="gone"/>
 
-    <TextView
-        android:id="@+id/textView_telefono"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TELEFONO"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_gravity="left"
-        android:visibility="gone"/>
 
-    <TextView
-        android:id="@+id/textView_horaCita"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HORA"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_gravity="left"
-        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/textView_ID"
@@ -71,4 +78,4 @@
         android:layout_gravity="right"
         android:visibility="gone"/>
 
-</LinearLayout>
+</RelativeLayout>

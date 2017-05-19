@@ -1,6 +1,7 @@
 package com.dam.agendapp;
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +13,13 @@ public abstract class Lista_adaptador extends BaseAdapter {
 
     private ArrayList<?> entradas;
     private int R_layout_IdView;
-    private Context contexto;
+    //private Context contexto;
+    private Activity actividad;
 
-    public Lista_adaptador(Context contexto, int R_layout_IdView, ArrayList<?> entradas) {
+    public Lista_adaptador(Activity actividad, int R_layout_IdView, ArrayList<?> entradas) {
         super();
-        this.contexto = contexto;
+        //this.contexto = contexto;
+        this.actividad = actividad;
         this.entradas = entradas;
         this.R_layout_IdView = R_layout_IdView;
 
@@ -26,7 +29,7 @@ public abstract class Lista_adaptador extends BaseAdapter {
     @Override
     public View getView(int posicion, View view, ViewGroup pariente) {
         if (view == null) {
-            LayoutInflater vi = (LayoutInflater) contexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater vi = (LayoutInflater) actividad.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = vi.inflate(R_layout_IdView, null);
         }
         onEntrada (entradas.get(posicion), view);

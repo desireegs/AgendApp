@@ -2,9 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    style="@style/AppTheme">
+
+
 
     <TextView
+
         android:id="@+id/tipo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,6 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Guardar"
-        android:layout_marginTop="10px" />
+        android:layout_marginTop="10px"
+        style="@style/AppTheme"/>
 
 </LinearLayout>
