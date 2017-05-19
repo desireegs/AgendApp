@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -137,6 +139,15 @@ public class Agenda extends AppCompatActivity {
                 }
             });
 
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Log.d("TAG","Se ha pulsado la tarea entera");
+
+            }
+        });
+
 
 
 
@@ -205,6 +216,17 @@ public class Agenda extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),
                     "No se ha podido eliminar las tareas" ,   Toast.LENGTH_LONG).show();
         refrescar();
+    }
+
+    public void tareaCompletada(View view){
+        Log.d("TAG","Hemos pulsado el checkbox");
+            /*Boolean completada = ((CheckBox) view).isChecked();
+            Log.d("TAG","¿Tarea completada? "+ completada);
+            TextView id = (TextView) findViewById(R.id.textView_ID);
+            Log.d("TAG","Obtenido TextVIew de id: " + id);
+            String i = id.getText().toString();
+            Log.d("TAG","Pasado a cadena" + i);
+            bd.updateCompletado(completada, Integer.parseInt(id.getText().toString()));*/
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

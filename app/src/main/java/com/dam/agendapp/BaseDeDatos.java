@@ -100,6 +100,10 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         return lista;
     }
 
+    public void updateCompletado(Boolean c, int id){
+
+    }
+
     public boolean  borrarTarea(int id) {
         SQLiteDatabase db = getWritableDatabase();
         long salida=0;
