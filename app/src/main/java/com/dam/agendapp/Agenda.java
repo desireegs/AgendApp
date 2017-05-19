@@ -151,7 +151,7 @@ public class Agenda extends AppCompatActivity {
                 Log.d("TAG","Se ha pulsado la tarea entera");
 
                 TextView textoID = (TextView) view.findViewById(R.id.textView_ID);
-                Tarea t = bd.recuperaTarea(textoID.toString());
+                Tarea t = bd.recuperaTarea(textoID.getText().toString());
                 Intent intent = new Intent(getApplicationContext(), Info.class);
                 intent.putExtra("Tarea", t);
                 startActivity(intent);

@@ -106,7 +106,9 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         String consulta = "select * from lista where idlis=?";
         Cursor c = db.rawQuery(consulta, new String[] {id});
-
+        if(c != null) {
+            c.moveToFirst();
+        }
         Tarea t = new Tarea(c.getInt(0), c.getInt(1), c.getInt(3), c.getString(4), c.getString(5),
                 c.getString(6), c.getString(7), c.getString(8), c.getString(9), fechaToCalendar(c.getString(2)),c.getInt(10));
 
