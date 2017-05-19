@@ -44,14 +44,14 @@
 
         <Button
             android:id="@+id/anterior"
-            android:layout_width="141dp"
+            android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:onClick="irAnterior"
             android:text="ANTERIOR" />
 
         <Button
             android:id="@+id/siguiente"
-            android:layout_width="141dp"
+            android:layout_width="84dp"
             android:layout_height="36dp"
             android:onClick="irSiguiente"
             android:text="SIGUIENTE" />
@@ -62,6 +62,13 @@
             android:layout_height="wrap_content"
             android:onClick="irNuevoEvento"
             android:text="Añadir" />
+
+        <Button
+            android:id="@+id/limpiar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="limpiar"
+            android:text="limpiar" />
 
     </android.support.v7.widget.GridLayout>
 

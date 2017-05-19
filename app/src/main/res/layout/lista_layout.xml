@@ -3,13 +3,34 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView_titulo"
-        android:layout_width="wrap_content"
+    <GridLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TITULO"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_gravity="left" />
+        android:columnCount="2"
+        android:rowCount="1">
+
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_column="0"
+            android:layout_row="0"/>
+
+        <TextView
+            android:id="@+id/textView_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="TITULO"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+    </GridLayout>
+
+
 
 
 

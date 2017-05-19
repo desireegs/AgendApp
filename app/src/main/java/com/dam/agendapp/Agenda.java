@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -85,8 +86,6 @@ public class Agenda extends AppCompatActivity {
         //Refrescamos la lista de tareas
         ArrayList<Tarea> datos = bd.recuperaLista(fecha);
 
-        Log.d("TAG", "Numero de tareas: "+ datos.size());
-
             lista = (ListView) findViewById(R.id.lista);
             lista.setAdapter(new Lista_adaptador(this, R.layout.lista_layout, datos) {
                 @Override
@@ -95,7 +94,6 @@ public class Agenda extends AppCompatActivity {
 
 
                         if(((Tarea) entrada).getTipo() == 0){
-                            Log.d("TAG", "He entrado en tipo 0");
 
                             TextView texto_titulo = (TextView) view.findViewById(R.id.textView_titulo);
                             if (texto_titulo != null)
@@ -103,7 +101,6 @@ public class Agenda extends AppCompatActivity {
                         }
 
                         else if(((Tarea) entrada).getTipo() == 1) {
-                            Log.d("TAG", "He entrado en tipo 1");
                             TextView texto_titulo = (TextView) view.findViewById(R.id.textView_titulo);
                             if (texto_titulo != null)
                                 texto_titulo.setText(((Tarea) entrada).getTitulo());
@@ -120,7 +117,6 @@ public class Agenda extends AppCompatActivity {
                                 texto_email.setText(((Tarea) entrada).getEmail());
 
                         }else if(((Tarea) entrada).getTipo() == 2){
-                            Log.d("TAG", "He entrado en tipo 2");
                             TextView texto_titulo = (TextView) view.findViewById(R.id.textView_titulo);
                             if (texto_titulo != null)
                                 texto_titulo.setText(((Tarea) entrada).getTitulo());
@@ -198,6 +194,17 @@ public class Agenda extends AppCompatActivity {
         intent.putExtra(EXTRA_MESSAGE,tipo);
         intent.putExtra("fecha",fecha);
         startActivityForResult(intent, LISTA);
+    }
+
+    public void limpiar(View view){
+        Boolean res= bd.borrarLista(fecha);
+        if(res)
+            Toast.makeText(getApplicationContext(),
+                    "Tareas borradas", Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(getApplicationContext(),
+                    "No se ha podido eliminar las tareas" ,   Toast.LENGTH_LONG).show();
+        refrescar();
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
