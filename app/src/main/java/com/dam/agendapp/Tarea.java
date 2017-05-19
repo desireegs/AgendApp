@@ -1,8 +1,9 @@
 package com.dam.agendapp;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class Tarea {
+public class Tarea implements Serializable {
 
     private int id;
     private int tipo;
@@ -56,6 +57,10 @@ public class Tarea {
 
     public String getDescripcion(){
         return descripcion;
+    }
+
+    public String getDireccion() {
+        return direccion;
     }
 
     public int getRecordatorio(){

@@ -100,6 +100,18 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         return lista;
     }
 
+    public Tarea recuperaTarea(String id) {
+        SQLiteDatabase db = getReadableDatabase();
+        String consulta = "select * from lista where idlis=?";
+        Cursor c = db.rawQuery(consulta, new String[] {id});
+        Tarea t = new Tarea(c.getInt(0), c.getInt(1), c.getInt(3), c.getString(4), c.getString(5),
+                c.getString(6), c.getString(7), c.getString(8), c.getString(9), fechaToCalendar(c.getString(2)));
+        db.close();
+        c.close();
+
+        return t;
+    }
+
     public void updateCompletado(Boolean c, int id){
 
     }
