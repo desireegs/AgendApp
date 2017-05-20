@@ -70,6 +70,12 @@ public class Evento extends AppCompatActivity {
 
     public void programar_evento() {
         Intent intent = new Intent(this, Notificacion.class);
+
+        EditText titulo = (EditText) findViewById(R.id.txtTitulo);
+        EditText descripcion = (EditText) findViewById(R.id.txtDescripcion);
+        intent.putExtra("Titulo", titulo.getText().toString());
+        intent.putExtra("Descripcion", descripcion.getText().toString());
+
         startActivity(intent);
     }
 
