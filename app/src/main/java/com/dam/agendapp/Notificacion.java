@@ -62,8 +62,12 @@ public class Notificacion extends AppCompatActivity {
         addListenerOnButton();
         // hora
         setCurrentTimeOnView();
+
+        Intent intent = getIntent();
         t3 = (EditText) findViewById(R.id.editText21);
+        t3.setText(intent.getStringExtra("Titulo"));
         t5= (EditText) findViewById(R.id.editText22);
+        t5.setText(intent.getStringExtra("Descripcion"));
         t6= (EditText) findViewById(R.id.editText23);
         t7= (EditText) findViewById(R.id.editText24);
         servicio();
@@ -93,7 +97,7 @@ public class Notificacion extends AppCompatActivity {
         t5.setText("");
         t6.setText("");
         t7.setText("");
-        Toast.makeText(this, "Alarma registrada", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Notificación registrada", Toast.LENGTH_LONG).show();
         finish();
     }
     public void setCurrentTimeOnView() {
