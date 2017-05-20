@@ -9,13 +9,13 @@
         android:orderInCategory="3"
         app:showAsAction="ifRoom" />
     <item android:id="@+id/anterior"
-        android:icon="@android:drawable/ic_media_previous"
+        android:icon="@drawable/flecha_izquierda"
         android:title="anterior"
         android:orderInCategory="1"
         app:showAsAction="always"/>
     <item android:id="@+id/siguiente"
         android:title="siguiente"
-        android:icon="@android:drawable/ic_media_next"
+        android:icon="@drawable/flecha_derecha"
         android:orderInCategory="2"
         app:showAsAction="always"/>
     <item android:id="@+id/delete"
