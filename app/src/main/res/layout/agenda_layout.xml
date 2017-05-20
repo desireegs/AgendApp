@@ -11,66 +11,61 @@
 
     <GridLayout
         android:layout_width="match_parent"
-        android:columnCount="3"
-        android:layout_height="59dp">
+        android:layout_height="59dp"
+        android:columnCount="4"
+        android:rowCount="1"
+        >
 
         <TextView
             android:id="@+id/dia"
-            android:layout_width="69dp"
-            android:layout_height="52dp"
-            android:layout_weight="0.03"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_column="0"
+            android:layout_margin="5dp"
             android:gravity="center"
-            android:text="DIA" />
+            android:text="DIA"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/semana"
-            android:layout_width="150dp"
-            android:layout_height="57dp"
-            android:layout_weight="0.03"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_column="3"
+            android:layout_gravity="right"
             android:gravity="center"
-            android:text="SEMANA" />
+            android:text="SEMANA"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_margin="5dp"/>
 
         <TextView
             android:id="@+id/mes"
-            android:layout_width="150dp"
-            android:layout_height="57dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:layout_margin="5dp"
             android:gravity="center"
-            android:text="MES" />
+            android:text="MES"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/año"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_column="2"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:text="AÑO"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="14sp"
+            android:textStyle="bold" />
     </GridLayout>
 
-    <android.support.v7.widget.GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/anterior"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:onClick="irAnterior"
-            android:text="ANTERIOR" />
-
-        <Button
-            android:id="@+id/siguiente"
-            android:layout_width="84dp"
-            android:layout_height="36dp"
-            android:onClick="irSiguiente"
-            android:text="SIGUIENTE" />
-
-        <Button
-            android:id="@+id/nuevo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="irNuevoEvento"
-            android:text="Añadir" />
-
-        <Button
-            android:id="@+id/limpiar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="limpiar"
-            android:text="limpiar" />
-
-    </android.support.v7.widget.GridLayout>
 
     <ListView
         android:id="@+id/lista"

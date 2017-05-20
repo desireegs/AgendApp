@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Main">
+    <item android:id="@+id/add"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="Añadir"
+        android:orderInCategory="3"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/anterior"
+        android:icon="@android:drawable/ic_media_previous"
+        android:title="anterior"
+        android:orderInCategory="1"
+        app:showAsAction="always"/>
+    <item android:id="@+id/siguiente"
+        android:title="siguiente"
+        android:icon="@android:drawable/ic_media_next"
+        android:orderInCategory="2"
+        app:showAsAction="always"/>
+    <item android:id="@+id/delete"
+        android:title="Eliminar completados"
+        android:orderInCategory="4"
+        app:showAsAction="never"
+        />
+
+
+</menu>

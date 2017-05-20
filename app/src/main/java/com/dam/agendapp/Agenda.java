@@ -7,7 +7,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
@@ -32,6 +35,7 @@ public class Agenda extends AppCompatActivity {
     TextView mes;
     TextView semana;
     TextView dia;
+    TextView año;
     private ListView lista;
 
     private BaseDeDatos bd;
@@ -47,6 +51,7 @@ public class Agenda extends AppCompatActivity {
         mes = (TextView)findViewById(R.id.mes);
         semana = (TextView)findViewById(R.id.semana);
         dia = (TextView)findViewById(R.id.dia);
+        año = (TextView) findViewById(R.id.año) ;
 
         bd = new BaseDeDatos(getApplicationContext());
         refrescar();
@@ -78,11 +83,16 @@ public class Agenda extends AppCompatActivity {
         return Integer.toString(fecha.get(Calendar.DAY_OF_MONTH));
     }
 
+    private String getAño(Calendar fecha){
+        return Integer.toString(fecha.get(Calendar.YEAR));
+    }
+
     private void refrescar(){
         //Refrescamos el dia
         mes.setText(getMes(fecha));
         semana.setText(getDiaSemana(fecha));
         dia.setText(getDia(fecha));
+        año.setText(getAño(fecha));
 
 
 
@@ -96,43 +106,9 @@ public class Agenda extends AppCompatActivity {
                 public void onEntrada(Object entrada, View view) {
                     if (entrada != null) {
 
-
-
-                        if(((Tarea) entrada).getTipo() == 0){
-
                             TextView texto_titulo = (TextView) view.findViewById(R.id.textView_titulo);
                             if (texto_titulo != null)
                                 texto_titulo.setText(((Tarea) entrada).getTitulo());
-                        }
-
-                        else if(((Tarea) entrada).getTipo() == 1) {
-                            TextView texto_titulo = (TextView) view.findViewById(R.id.textView_titulo);
-                            if (texto_titulo != null)
-                                texto_titulo.setText(((Tarea) entrada).getTitulo());
-
-                            TextView texto_tel = (TextView) view.findViewById(R.id.textView_telefono);
-                            texto_tel.setVisibility(View.VISIBLE);
-                            if (texto_tel != null)
-                                texto_tel.setText(((Tarea) entrada).getTelefono());
-
-                            TextView texto_email = (TextView) view.findViewById(R.id.textView_email);
-                            texto_email.setVisibility(View.VISIBLE);
-
-                            if (texto_email != null)
-                                texto_email.setText(((Tarea) entrada).getEmail());
-
-                        }else if(((Tarea) entrada).getTipo() == 2){
-                            TextView texto_titulo = (TextView) view.findViewById(R.id.textView_titulo);
-                            if (texto_titulo != null)
-                                texto_titulo.setText(((Tarea) entrada).getTitulo());
-
-                            TextView texto_hora = (TextView) view.findViewById(R.id.textView_horaCita);
-                            texto_hora.setVisibility(View.VISIBLE);
-
-                            if (texto_hora != null)
-                                texto_hora.setText(((Tarea) entrada).getHoraCita());
-
-                        }
 
                         TextView texto_ID = (TextView) view.findViewById(R.id.textView_ID);
                         if (texto_ID != null)
@@ -164,7 +140,7 @@ public class Agenda extends AppCompatActivity {
 
     }
 
-    public void irSiguiente(View view){
+    public void irSiguiente(){
         int a = fecha.get(Calendar.YEAR);
         int m = fecha.get(Calendar.MONTH);
         int d = fecha.get(Calendar.DAY_OF_MONTH);
@@ -182,7 +158,7 @@ public class Agenda extends AppCompatActivity {
         refrescar();
     }
 
-    public void irAnterior(View view){
+    public void irAnterior(){
         int a = fecha.get(Calendar.YEAR);
         int m = fecha.get(Calendar.MONTH);
         int d = fecha.get(Calendar.DAY_OF_MONTH);
@@ -205,7 +181,7 @@ public class Agenda extends AppCompatActivity {
 
     }
 
-    public void irNuevoEvento(View view){
+    public void irNuevoEvento(){
         Dialog dialogo = onCreateDialog();
         dialogo.show();
     }
@@ -217,7 +193,7 @@ public class Agenda extends AppCompatActivity {
         startActivityForResult(intent, LISTA);
     }
 
-    public void limpiar(View view){
+    public void limpiar(){
         Boolean res= bd.borrarLista();
         if(res)
             Toast.makeText(getApplicationContext(),
@@ -246,6 +222,33 @@ public class Agenda extends AppCompatActivity {
             if (resultCode == RESULT_CANCELED) {
                 //Write your code if there's no result
             }
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.siguiente:
+                irSiguiente();
+                return true;
+            case R.id.anterior:
+                irAnterior();
+                return true;
+            case R.id.add:
+                irNuevoEvento();
+                return true;
+            case R.id.delete:
+                limpiar();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
