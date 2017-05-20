@@ -82,5 +82,28 @@ public class Tarea implements Serializable {
         return c;
     }
 
+    public void setTitulo(String cadena){
+        this.titulo = cadena;
+    }
+
+    public void setDescripcion(String cadena){
+        this.descripcion = cadena;
+    }
+
+    public void setEmail(String cadena){
+        this.email = cadena;
+    }
+
+    public void setTelefono(String cadena){
+        this.telefono = cadena;
+    }
+
+    public void setDireccion(String cadena){
+        this.direccion = cadena;
+    }
+
+    public void setHora(String cadena){
+        this.hora = cadena;
+    }
 
 }

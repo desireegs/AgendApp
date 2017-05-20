@@ -134,6 +134,33 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         db.close();
     }
 
+    public boolean modificarTarea(Tarea t){
+        long salida=0;
+        SQLiteDatabase db = getWritableDatabase();
+        if (db != null) {
+            ContentValues valores = new ContentValues();
+            valores.put("titulo", t.getTitulo());
+            valores.put("descripcion", t.getDescripcion() );
+            Log.d("TAG", "TItulo y descripcion OK");
+
+            if(t.getTipo() == 1){
+                valores.put("telefono", t.getTelefono());
+                valores.put("email", t.getEmail());
+
+            }else if(t.getTipo() == 2){
+                valores.put("direccion", t.getDireccion());
+                valores.put("horaCita", t.getHoraCita());
+            }
+
+            Log.d("TAG", "tODOS OK");
+
+            salida=db.update("lista", valores, "idlis=" + t.getId(), null);
+            Log.d("TAG", "FALLA EL UPDATE");
+        }
+        db.close();
+        return(salida>0);
+    }
+
     public boolean  borrarTarea(int id) {
         SQLiteDatabase db = getWritableDatabase();
         long salida=0;

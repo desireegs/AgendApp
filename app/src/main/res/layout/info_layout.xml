@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="4"
+        android:layout_weight="1.00">
+
+
+        <TextView
+            android:id="@+id/tv_titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:fontFamily="sans-serif"
+            android:text="Titulo" />
+
+
+        <EditText
+            android:id="@+id/ed_titulo"
+            android:layout_width="291dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:fontFamily="casual"
+            android:text="Titulo" />
+
+        <TextView
+            android:id="@+id/tv_descripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:fontFamily="sans-serif"
+            android:text="Descripcion" />
+
+
+        <EditText
+            android:id="@+id/ed_descripcion"
+            android:layout_width="291dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="3"
+            android:fontFamily="casual"
+            android:text="Descripción" />
+
+        <TextView
+            android:id="@+id/tv_telefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:fontFamily="sans-serif"
+            android:text="Telefono"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/ed_Telefono"
+            android:layout_width="291dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:fontFamily="casual"
+            android:text="Telefono"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:fontFamily="sans-serif"
+            android:text="Email"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/ed_Email"
+            android:layout_width="291dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="2"
+            android:fontFamily="casual"
+            android:text="Email"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_hora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:fontFamily="sans-serif"
+            android:text="Hora"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/ed_Hora"
+            android:layout_width="291dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:fontFamily="casual"
+            android:text="Hora"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_direccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:fontFamily="sans-serif"
+            android:text="Direccion"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/ed_Direccion"
+            android:layout_width="291dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="2"
+            android:fontFamily="casual"
+            android:text="Direccion"
+            android:visibility="gone" />
+
+    </GridLayout>
+
+    <Button
+        android:id="@+id/modificar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="modificar"
+        android:text="Modificar" />
+
+</LinearLayout>
