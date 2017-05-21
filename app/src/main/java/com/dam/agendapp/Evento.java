@@ -3,7 +3,6 @@ package com.dam.agendapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -82,21 +81,16 @@ public class Evento extends AppCompatActivity {
         Boolean res = false;
 
         if(tipo == 0){
-            Log.d("TAG","tipo 0");
             res=bd.insertarLista(tipo, fecha, titulo.getText().toString(), descripcion.getText().toString(),
                     null, null, null, null);
         }else if(tipo == 1) {
-            Log.d("TAG","tipo 1");
             EditText telefono = (EditText) findViewById(R.id.txtTelefono);
             EditText email = (EditText) findViewById(R.id.txtEmail);
-            Log.d("TAG",email.getText().toString());
-            Log.d("TAG",telefono.getText().toString());
 
             res = bd.insertarLista(tipo, fecha, titulo.getText().toString(), descripcion.getText().toString(),
                     telefono.getText().toString(), email.getText().toString(), null,null );
         }
         else if(tipo == 2){
-            Log.d("TAG","tipo 2");
             EditText direccion = (EditText) findViewById(R.id.txtDireccion);
             EditText horaCita = (EditText) findViewById(R.id.txtHora);
 

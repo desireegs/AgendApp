@@ -3,7 +3,6 @@ package com.dam.agendapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -57,11 +56,8 @@ public class Info extends AppCompatActivity {
     }
 
     public void modificar(View view){
-        Log.d("TAG", "eSTAMOS EN MODIFICAR");
         EditText et = (EditText) findViewById(R.id.ed_titulo);
-        Log.d("TAG", "eDIT TEXT COGIDO: " + et);
         t.setTitulo(et.getText().toString());
-        Log.d("TAG", "SET TITULO");
         et = (EditText) findViewById(R.id.ed_descripcion);
         t.setDescripcion(et.getText().toString());
 
@@ -78,7 +74,6 @@ public class Info extends AppCompatActivity {
         }
 
         BaseDeDatos bd = new BaseDeDatos(getApplicationContext());
-        Log.d("TAG", "Vamos a modificar la tarea");
         boolean res = bd.modificarTarea(t);
         if(res)
             Toast.makeText(getApplicationContext(),

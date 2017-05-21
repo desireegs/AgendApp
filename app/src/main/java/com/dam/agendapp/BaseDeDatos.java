@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -131,7 +130,6 @@ public class BaseDeDatos extends SQLiteOpenHelper {
             ContentValues valores = new ContentValues();
             valores.put("titulo", t.getTitulo());
             valores.put("descripcion", t.getDescripcion() );
-            Log.d("TAG", "TItulo y descripcion OK");
 
             if(t.getTipo() == 1){
                 valores.put("telefono", t.getTelefono());
@@ -142,10 +140,8 @@ public class BaseDeDatos extends SQLiteOpenHelper {
                 valores.put("horaCita", t.getHoraCita());
             }
 
-            Log.d("TAG", "tODOS OK");
 
             salida=db.update("lista", valores, "idlis=" + t.getId(), null);
-            Log.d("TAG", "FALLA EL UPDATE");
         }
         db.close();
         return(salida>0);
