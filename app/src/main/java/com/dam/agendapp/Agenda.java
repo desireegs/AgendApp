@@ -194,7 +194,7 @@ public class Agenda extends AppCompatActivity {
     }
 
     public void limpiar(){
-        Boolean res= bd.borrarLista();
+        Boolean res= bd.borrarLista(fecha);
         if(res)
             Toast.makeText(getApplicationContext(),
                     "Tareas borradas", Toast.LENGTH_LONG).show();

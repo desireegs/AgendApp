@@ -26,7 +26,7 @@ public class BaseDeDatos extends SQLiteOpenHelper {
                 "mensaje text,fecha date, hora time)");
         db.execSQL(" create table lista( idlis integer primary key autoincrement,tipo integer, " +
                 "fecha date,recordatorio integer,titulo text, descripcion text, telefono text, " +
-                "email text, direccion text, horaCita text, completada integer)");
+                "email text, direccion text, horaCita text, completada integer, idal integer)");
 
 
 
@@ -40,7 +40,7 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         db.execSQL("drop table if exists lista" );
         db.execSQL(" create table lista( idlis integer primary key autoincrement,tipo integer, " +
                 "fecha date,recordatorio integer,titulo text, descripcion text, telefono text, " +
-                "email text, direccion text, horaCita text, completada integer)");
+                "email text, direccion text, horaCita text, completada integer, idal integer)");
 
     }
 
@@ -171,13 +171,13 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         return(salida>0);
     }
 
-    public Boolean  borrarLista() {
+    public Boolean  borrarLista(Calendar f) {
 
         SQLiteDatabase db = getWritableDatabase();
 
         int salida=0;
         if (db != null) {
-            salida = db.delete("lista", "completada=1", null);
+            salida = db.delete("lista", "completada=1 AND fecha='"+ fechaToString(f)+"'", null);
         }
         db.close();
         return (salida > 0);
