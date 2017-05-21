@@ -1,14 +1,11 @@
 package com.dam.agendapp;
 
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,8 +37,6 @@ public class Agenda extends AppCompatActivity {
 
     private BaseDeDatos bd;
 
-
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +50,6 @@ public class Agenda extends AppCompatActivity {
 
         bd = new BaseDeDatos(getApplicationContext());
         refrescar();
-
-
-
     }
 
     public Dialog onCreateDialog() {
@@ -93,8 +85,6 @@ public class Agenda extends AppCompatActivity {
         semana.setText(getDiaSemana(fecha));
         dia.setText(getDia(fecha));
         año.setText(getAño(fecha));
-
-
 
         //Refrescamos la lista de tareas
         ArrayList<Tarea> datos = bd.recuperaLista(fecha);
@@ -133,11 +123,6 @@ public class Agenda extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
     }
 
     public void irSiguiente(){
@@ -256,7 +241,4 @@ public class Agenda extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
-
 }

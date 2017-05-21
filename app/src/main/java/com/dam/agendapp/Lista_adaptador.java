@@ -7,18 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 
 public abstract class Lista_adaptador extends BaseAdapter {
 
     private ArrayList<?> entradas;
     private int R_layout_IdView;
-    //private Context contexto;
     private Activity actividad;
 
     public Lista_adaptador(Activity actividad, int R_layout_IdView, ArrayList<?> entradas) {
         super();
-        //this.contexto = contexto;
         this.actividad = actividad;
         this.entradas = entradas;
         this.R_layout_IdView = R_layout_IdView;
@@ -56,5 +53,4 @@ public abstract class Lista_adaptador extends BaseAdapter {
      * @param view View particular que contendrá los datos del paquete/handler
      */
     public abstract void onEntrada (Object entrada, View view);
-
 }

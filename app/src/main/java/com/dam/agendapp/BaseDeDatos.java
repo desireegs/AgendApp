@@ -1,15 +1,11 @@
 package com.dam.agendapp;
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.CalendarContract;
 import android.util.Log;
-import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,9 +23,6 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         db.execSQL(" create table lista( idlis integer primary key autoincrement,tipo integer, " +
                 "fecha date,recordatorio integer,titulo text, descripcion text, telefono text, " +
                 "email text, direccion text, horaCita text, completada integer, idal integer)");
-
-
-
     }
 
     @Override
@@ -41,7 +34,6 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         db.execSQL(" create table lista( idlis integer primary key autoincrement,tipo integer, " +
                 "fecha date,recordatorio integer,titulo text, descripcion text, telefono text, " +
                 "email text, direccion text, horaCita text, completada integer, idal integer)");
-
     }
 
     public boolean insertarLista(int tipo, Calendar fecha, String titulo, String descripcion,
@@ -68,8 +60,6 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         }
         db.close();
         return(salida>0);
-
-
     }
 
     //Devuelve una lista con las tareas que corresponden a la fecha dada en el Calendar

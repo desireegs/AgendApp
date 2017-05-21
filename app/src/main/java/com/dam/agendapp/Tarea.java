@@ -40,7 +40,6 @@ public class Tarea implements Serializable {
         return tipo;
     }
 
-
     public String getTitulo(){
         return titulo;
     }

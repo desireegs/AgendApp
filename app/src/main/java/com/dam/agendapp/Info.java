@@ -91,5 +91,4 @@ public class Info extends AppCompatActivity {
         setResult(RESULT_OK, returnintent);
         finish();
     }
-
 }

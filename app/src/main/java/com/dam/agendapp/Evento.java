@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,7 +14,6 @@ import java.util.Calendar;
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class Evento extends AppCompatActivity {
-
 
     private Button recordatorio;
     private Button bguardar;
@@ -54,9 +52,6 @@ public class Evento extends AppCompatActivity {
             }
         });
     }
-
-
-
 
     private void tipoTarea(){
         setContentView(R.layout.tarea_layout);
@@ -109,8 +104,6 @@ public class Evento extends AppCompatActivity {
             res =bd.insertarLista(tipo, fecha, titulo.getText().toString(), descripcion.getText().toString(),
                     null, null, direccion.getText().toString(),
                     horaCita.getText().toString());
-
-
         }
 
         if(res)
@@ -123,6 +116,5 @@ public class Evento extends AppCompatActivity {
         Intent returnintent = new Intent();
         setResult(RESULT_OK, returnintent);
         finish();
-
     }
 }
