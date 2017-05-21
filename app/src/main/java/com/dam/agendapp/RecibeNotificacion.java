@@ -57,7 +57,7 @@ public class RecibeNotificacion extends BroadcastReceiver {
     }
 
     private void triggerNotification(Context contexto, String t) {
-        Intent notificationIntent = new Intent(contexto, Info.class);
+        Intent notificationIntent = new Intent(contexto, Agenda.class);
         notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent contentIntent = PendingIntent.getActivity(contexto, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
