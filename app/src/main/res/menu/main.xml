@@ -18,9 +18,16 @@
         android:icon="@drawable/flecha_derecha"
         android:orderInCategory="2"
         app:showAsAction="always"/>
+
+    <item android:id="@+id/irHoy"
+        android:title="Ir a Hoy"
+        android:orderInCategory="4"
+        app:showAsAction="never"/>
+
+
     <item android:id="@+id/delete"
         android:title="Eliminar completados"
-        android:orderInCategory="4"
+        android:orderInCategory="5"
         app:showAsAction="never"
         />
 

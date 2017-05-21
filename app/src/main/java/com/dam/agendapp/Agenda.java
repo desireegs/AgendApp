@@ -247,6 +247,11 @@ public class Agenda extends AppCompatActivity {
             case R.id.delete:
                 limpiar();
                 return true;
+
+            case R.id.irHoy:
+                fecha = Calendar.getInstance();
+                refrescar();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
